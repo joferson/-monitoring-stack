@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/joferson/-monitoring-stack
     targetRevision: HEAD
-    path: monitoring
+    path: monitoring/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
