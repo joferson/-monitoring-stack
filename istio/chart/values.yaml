@@ -21,6 +21,10 @@ istiod:
       PILOT_ENABLE_STATUS: true
     autoscaleEnabled: true
     replicaCount: 1
+  sidecarInjectorWebhook:
+    enableNamespacesByDefault: false
+  validationWebhook:
+    enabled: true
 
 gateway:
   name: istio-ingressgateway
