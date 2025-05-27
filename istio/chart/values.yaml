@@ -14,6 +14,13 @@ istiod:
       limits:
         cpu: 1000m
         memory: 4096Mi
+  meshConfig:
+    enableAutoMtls: true
+  pilot:
+    env:
+      PILOT_ENABLE_STATUS: true
+    autoscaleEnabled: true
+    replicaCount: 1
 
 gateway:
   name: istio-ingressgateway
