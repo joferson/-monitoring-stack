@@ -25,9 +25,11 @@ spec:
           enabled: true
           admissionWebhooks:
             enabled: true
-            failurePolicy: Fail
+            failurePolicy: Ignore
+            certManager:
+              enabled: false
           tls:
-            enabled: true
+            enabled: false
           resources:
             limits:
               cpu: 200m
@@ -35,6 +37,8 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
+          annotations:
+            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -43,4 +47,5 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
+      - ServerSideApply=true 
