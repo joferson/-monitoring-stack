@@ -8,9 +8,9 @@ spec:
   - list:
       elements:
       - name: istio-base
-        path: apps/base.yaml
+        path: istio/apps/base.yaml
       - name: istio-gateway
-        path: apps/gateway.yaml
+        path: istio/apps/gateway.yaml
   template:
     metadata:
       name: '{{name}}'
@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/joferson/-monitoring-stack.git
         targetRevision: HEAD
-        path: '{{path}}'
+        path: .
       destination:
         server: https://kubernetes.default.svc
         namespace: istio-system
