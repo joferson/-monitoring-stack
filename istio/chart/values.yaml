@@ -48,4 +48,18 @@ gateway:
     enabled: true
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: 80 
+    targetCPUUtilizationPercentage: 80
+
+monitoring:
+  enabled: true
+  namespace: monitoring
+  services:
+    grafana:
+      host: grafana.local
+      port: 80
+    prometheus:
+      host: prometheus.local
+      port: 9090
+    alertmanager:
+      host: alertmanager.local
+      port: 9093 
