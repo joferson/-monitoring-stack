@@ -1,18 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-bootstrap
+  name: istio-setup
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/joferson/-monitoring-stack.git
     targetRevision: HEAD
-    path: istio
+    path: istio/chart
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: istio-system
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true 

@@ -1,5 +1,0 @@
-apiVersion: v2
-name: istio-components
-description: Istio components managed by Argo CD
-version: 0.1.0
-type: application 

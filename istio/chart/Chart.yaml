@@ -1,0 +1,15 @@
+apiVersion: v2
+name: istio-setup
+description: Istio Service Mesh setup managed by ArgoCD
+version: 0.1.0
+type: application
+dependencies:
+  - name: base
+    version: 1.20.0
+    repository: https://istio-release.storage.googleapis.com/charts
+  - name: istiod
+    version: 1.20.0
+    repository: https://istio-release.storage.googleapis.com/charts
+  - name: gateway
+    version: 1.20.0
+    repository: https://istio-release.storage.googleapis.com/charts 
