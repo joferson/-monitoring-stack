@@ -16,7 +16,7 @@ istiod:
         memory: 4096Mi
 
 gateway:
-  enabled: true
+  name: istio-ingressgateway
   service:
     type: LoadBalancer
     ports:
