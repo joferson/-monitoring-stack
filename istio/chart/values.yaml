@@ -28,6 +28,7 @@ istiod:
 
 gateway:
   name: istio-ingressgateway
+  image: docker.io/istio/proxyv2:1.20.0
   service:
     type: LoadBalancer
     ports:
