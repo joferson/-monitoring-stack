@@ -1,21 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-setup
+  name: monitoring-istio-config
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
-    repoURL: https://github.com/joferson/-monitoring-stack.git
+    repoURL: https://github.com/joferson/-monitoring-stack
     targetRevision: HEAD
-    path: istio/chart
+    path: monitoring/apps
+    directory:
+      include: "istio-gateway.yaml"
   destination:
     server: https://kubernetes.default.svc
-    namespace: istio-system
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - Replace=true 
+      - CreateNamespace=true 
