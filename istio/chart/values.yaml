@@ -1,5 +1,7 @@
 global:
   istioNamespace: istio-system
+  hub: docker.io/istio
+  tag: 1.20.0
 
 base:
   enabled: true
