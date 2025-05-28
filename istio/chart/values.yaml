@@ -30,6 +30,8 @@ istiod:
 
 gateway:
   name: istio-ingressgateway
+  enabled: true
+  injectionTemplate: gateway
   service:
     type: LoadBalancer
     ports:
