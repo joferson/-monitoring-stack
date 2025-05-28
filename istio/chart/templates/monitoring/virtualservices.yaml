@@ -1,0 +1,52 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana
+  namespace: {{ .Values.monitoring.namespace }}
+spec:
+  hosts:
+  - {{ .Values.monitoring.services.grafana.host }}
+  gateways:
+  - {{ .Release.Namespace }}/monitoring-gateway
+  http:
+  - route:
+    - destination:
+        host: kube-prometheus-stack-grafana
+        port:
+          number: {{ .Values.monitoring.services.grafana.port }}
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: alertmanager
+  namespace: {{ .Values.monitoring.namespace }}
+spec:
+  hosts:
+  - {{ .Values.monitoring.services.alertmanager.host }}
+  gateways:
+  - {{ .Release.Namespace }}/monitoring-gateway
+  http:
+  - route:
+    - destination:
+        host: kube-prometheus-stack-alertmanager
+        port:
+          number: {{ .Values.monitoring.services.alertmanager.port }}
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: prometheus
+  namespace: {{ .Values.monitoring.namespace }}
+spec:
+  hosts:
+  - {{ .Values.monitoring.services.prometheus.host }}
+  gateways:
+  - {{ .Release.Namespace }}/monitoring-gateway
+  http:
+  - route:
+    - destination:
+        host: kube-prometheus-stack-prometheus
+        port:
+          number: {{ .Values.monitoring.services.prometheus.port }}
+{{- end }} 

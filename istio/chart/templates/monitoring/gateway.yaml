@@ -1,8 +1,9 @@
-apiVersion: networking.istio.io/v1alpha3
+{{- if .Values.monitoring.enabled }}
+apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: monitoring-gateway
-  namespace: istio-system
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     istio: ingressgateway
@@ -12,6 +13,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "grafana.local"
-    - "prometheus.local"
-    - "alertmanager.local" 
+    - {{ .Values.monitoring.services.grafana.host }}
+    - {{ .Values.monitoring.services.prometheus.host }}
+    - {{ .Values.monitoring.services.alertmanager.host }}
+{{- end }} 
